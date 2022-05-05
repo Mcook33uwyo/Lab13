@@ -645,8 +645,16 @@ class Word:
         print("") 
 
     def guessLetter ( self, letter ) :
-        # Add / Modify Code -- At This Point ------------------------------------------
-        return False
+         if letter not in self.letters_picked:
+             self.letters_picked=self.letters_picked + letter
+         if letter in self.word:
+            self.n_success+=1
+         else:
+            self.n_incorrect_letters +=1
+         if self.n_incorrect_letters >8:
+            return True
+         return False
+
 
     def getHint ( self ):
         for c in self.word:
@@ -684,9 +692,9 @@ class Word:
  
 
 # Test Code.
-
 if __name__ == "__main__":
     ww = Word()
     ww.pickSecretWord( 'init' )
     print ( ww.wordPicked() )
+
 
